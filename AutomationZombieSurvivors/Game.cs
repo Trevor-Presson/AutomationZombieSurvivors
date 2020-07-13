@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AutomationZombieSurvivors
 {
-    public class Combat
+    public class Game
     {
         public int Turn { get; set; }
 
@@ -20,6 +20,8 @@ namespace AutomationZombieSurvivors
                 survivor.InReserve.Add(equipmentSeed.First());
             }
         }
+
+        public void AddSurvivor (List<>)
 
         //public void DropEquipment(Survivor survivor)
         //{

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
 namespace AutomationZombieSurvivors
@@ -10,10 +11,13 @@ namespace AutomationZombieSurvivors
         {
             Console.WriteLine("Hello World!");
 
-            //Seed survivor
-            var survivor = new Survivor { Name = "Jeff Probst" };
+            //Seed initial Survivor
+            var survivor1 = new Survivor { Name = "Jeff Probst" };
+            var survivorList = new List<Survivor>();
+            survivorList.Add(survivor1);
 
-            var combat = new Combat();
+            var game = new Game();
+          
 
             //Seed equipment 
             var equipmentSeed = new List<Equipment>();
@@ -24,15 +28,29 @@ namespace AutomationZombieSurvivors
             equipmentSeed.Add(equipment2);
             equipmentSeed.Add(equipment3);
 
-            //survivor.Equipped.Add(equipment1);
-            //survivor.Equipped.Add(equipment2);
-            //survivor.Equipped.Add(equipment3);
+            //Seed Survivor 
+            var survivorSeed = new List<Survivor>();
+            var survivor2 = new Survivor { Name = "Dwayne" };
+            var survivor3 = new Survivor { Name = "Bill" };
+            var survivor4 = new Survivor { Name = "John" };
+            survivorSeed.Add(survivor2);
+            survivorSeed.Add(survivor3);
+            survivorSeed.Add(survivor4);
 
-            //Action execution
-            while (survivor.Actions > 0)
+        
+            //Gameplay Loop
+            while (survivorList.Exists(x => x.Alive == true))
             {
-                combat.LootEquipment(survivor, equipmentSeed);
-                survivor.Actions -= 1;
+                foreach (Survivor survivor in survivorList.ToList())
+                {
+                    while (survivor.Actions > 0)
+                    {
+                        game.LootEquipment(survivor, equipmentSeed);
+                        survivorList.Add(survivorSeed.FirstOrDefault());
+                        survivor.Actions -= 1;
+                    }
+                }
+               
             }
         }
     }
