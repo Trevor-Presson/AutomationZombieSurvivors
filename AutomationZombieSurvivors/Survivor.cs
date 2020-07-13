@@ -12,6 +12,9 @@ namespace AutomationZombieSurvivors
         public int Actions { get; set; }
         public List<Equipment> Equipped { get; set; }
         public List<Equipment> InReserve { get; set; }
+        public int Level { get; set; }
+        //public enum Level { Blue, Orange, Yellow, Red};
+        public int Experience { get; set; }
 
         public Survivor()
         {
@@ -20,6 +23,9 @@ namespace AutomationZombieSurvivors
             Actions = 3;
             Equipped = new List<Equipment>();
             InReserve = new List<Equipment>();
+            Experience = 0;
+            Level = 1;
         }
     }
+
 }

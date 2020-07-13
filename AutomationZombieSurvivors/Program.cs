@@ -43,11 +43,20 @@ namespace AutomationZombieSurvivors
             {
                 foreach (Survivor survivor in survivorList.ToList())
                 {
-                    while (survivor.Actions > 0)
+                    while (survivor.Actions > 0 && survivor.Alive == true)
                     {
-                        game.LootEquipment(survivor, equipmentSeed);
+                        game.Fight(survivor);
+                        game.DeathCheck(survivor);
+
+                        if (survivor.Alive == true)
+                        {
+                            game.CalculateLevel(survivor);
+                            game.LootEquipment(survivor, equipmentSeed);
+                            survivor.Actions -= 1;
+                            game.CalculateGameLevel(survivorList, game);
+                        }
+
                         survivorList.Add(survivorSeed.FirstOrDefault());
-                        survivor.Actions -= 1;
                     }
                 }
                
