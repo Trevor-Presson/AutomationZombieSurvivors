@@ -10,12 +10,16 @@ namespace AutomationZombieSurvivors
         public int Wounds { get; set; }
         public bool Alive { get; set; }
         public int Actions { get; set; }
+        public List<Equipment> Equipped { get; set; }
+        public List<Equipment> InReserve { get; set; }
 
         public Survivor()
         {
             Wounds = 0;
             Alive = true;
             Actions = 3;
+            Equipped = new List<Equipment>();
+            InReserve = new List<Equipment>();
         }
     }
 }
