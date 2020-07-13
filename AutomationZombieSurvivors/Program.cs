@@ -37,7 +37,8 @@ namespace AutomationZombieSurvivors
             survivorSeed.Add(survivor3);
             survivorSeed.Add(survivor4);
 
-        
+            
+
             //Gameplay Loop
             while (survivorList.Exists(x => x.Alive == true))
             {
@@ -46,7 +47,7 @@ namespace AutomationZombieSurvivors
                     while (survivor.Actions > 0 && survivor.Alive == true)
                     {
                         game.Fight(survivor);
-                        game.DeathCheck(survivor);
+                        game.DeathCheck(survivor, survivorList);
 
                         if (survivor.Alive == true)
                         {
